@@ -1,0 +1,28 @@
+// Copyright 2000-2021 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+apply plugin: 'java'
+
+
+
+sourceSets {
+  main.java.srcDirs 'src'
+  test.java.srcDirs 'test'
+}
+
+repositories { mavenCentral() }
+dependencies {
+  implementation 'org.jetbrains:annotations:20.1.0'
+  implementation("org.ow2.asm:asm:9.4")
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'org.assertj:assertj-core:3.23.1'
+}
+
+jar {
+  archiveFileName = 'fernflower.jar'
+  manifest {
+    attributes 'Main-Class': 'org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler'
+  }
+}
+
+print(System.getProperties())
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
